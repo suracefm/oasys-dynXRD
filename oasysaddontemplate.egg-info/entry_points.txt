@@ -1,0 +1,7 @@
+[oasys.addons]
+OasysAddonTemplate = orangecontrib.oasysaddontemplate
+
+[oasys.widgets]
+OasysAddonTemplate Applications = orangecontrib.oasysaddontemplate.widgets.applications
+OasysAddonTemplate Viewers = orangecontrib.oasysaddontemplate.widgets.viewers
+

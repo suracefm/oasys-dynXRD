@@ -1,0 +1,7 @@
+[oasys.addons]
+OasysdynXRD = orangecontrib.oasysdynXRD
+
+[oasys.widgets]
+OasysdynXRD Applications = orangecontrib.oasysdynXRD.widgets.applications
+OasysdynXRD Viewers = orangecontrib.oasysdynXRD.widgets.viewers
+

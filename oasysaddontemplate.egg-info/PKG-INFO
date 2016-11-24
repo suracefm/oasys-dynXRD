@@ -1,0 +1,22 @@
+Metadata-Version: 1.1
+Name: oasysaddontemplate
+Version: 1.0
+Summary: oasysaddontemplate: Template for Oasys Addon
+Home-page: http://orange.biolab.si/
+Author: Your Name Here
+Author-email: yourname@instutution.ext
+License: MIT
+Download-URL: http://github.com/srio/oasys-addon-template
+Description: oasys-addon-template README.txt
+        
+        
+Keywords: application,customer,Oasys,Orange
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: X11 Applications :: Qt
+Classifier: Environment :: Console
+Classifier: Environment :: Plugins
+Classifier: Programming Language :: Cython
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Intended Audience :: Science/Research

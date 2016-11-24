@@ -1,0 +1,21 @@
+Metadata-Version: 1.1
+Name: oasysdynXRD
+Version: 1.0
+Summary: oasysdynXRD: Oasys interface for dynXRD
+Home-page: http://orange.biolab.si/
+Author: Federica Maria Surace
+Author-email: federicamsurace@gmail.com
+License: MIT
+Download-URL: http://github.com/suracefm/oasys-dynXRD
+Description: oasys-addon-template README.txt
+        
+        
+Keywords: application,customer,Oasys,Orange
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: X11 Applications :: Qt
+Classifier: Environment :: Console
+Classifier: Environment :: Plugins
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Intended Audience :: Science/Research
