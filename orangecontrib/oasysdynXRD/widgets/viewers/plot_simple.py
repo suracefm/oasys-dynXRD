@@ -34,6 +34,9 @@ class OWPlotSimple(widget.OWWidget):
         y.shape = -1
         fig = plt.figure()
         plt.plot(x,y,linewidth=1.0, figure=fig)
+        plt.yscale('log')
+        plt.xlabel('Angle (degrees)')
+        plt.ylabel('Reflectivity')
         plt.grid(True)
         if self.figure_canvas is not None:
             self.mainArea.layout().removeWidget(self.figure_canvas)

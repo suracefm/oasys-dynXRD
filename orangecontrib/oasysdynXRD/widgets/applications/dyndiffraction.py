@@ -36,23 +36,23 @@ class OWdyndiffraction(widget.OWWidget):
     want_main_area = False
 
     ENERGY = Setting(10000.0)
-    MIN_ANGLE = Setting(0.995)
-    MAX_ANGLE = Setting(1.005)
+    MIN_ANGLE = Setting(0.9995)
+    MAX_ANGLE = Setting(1.0005)
     NPOINTS = Setting(500)
     N_LAYERS = Setting(2)
     ORIENTATION_INPUT = Setting(0)
     CRYSTAL_NAME_0 = Setting(0)
-    MILLER_0 = Setting("0,0,1")
+    MILLER_0 = Setting("1,1,1")
     V_PERP_0 = Setting("0,0,1")
     PSI_0 = Setting(0.0)
     V_PAR_0 = Setting("1,0,0")
     CRYSTAL_NAME_1 = Setting(0)
-    THICKNESS_1 = Setting("1000.0")
+    THICKNESS_1 = Setting(1000.0)
     V_PERP_1 = Setting("0,0,1")
     PSI_1 = Setting(0.0)
     V_PAR_1 = Setting("1,0,0")
     CRYSTAL_NAME_2 = Setting(0)
-    THICKNESS_2 = Setting("1000.0")
+    THICKNESS_2 = Setting(1000.0)
     V_PERP_2 = Setting("0,0,1")
     PSI_2 = Setting(0.0)
     V_PAR_2 = Setting("1,0,0")
@@ -175,7 +175,8 @@ class OWdyndiffraction(widget.OWWidget):
         idx += 1
         box1 = gui.widgetBox(box)
         gui.lineEdit(box1, self, "THICKNESS_1",
-                     label=self.unitLabels()[idx], addSpace=True)
+                     label=self.unitLabels()[idx], addSpace=True,
+                     valueType=int, validator=QIntValidator())
         self.show_at(self.unitFlags()[idx], box1)
 
         #widget index 13
@@ -213,7 +214,8 @@ class OWdyndiffraction(widget.OWWidget):
         idx += 1
         box1 = gui.widgetBox(box)
         gui.lineEdit(box1, self, "THICKNESS_2",
-                     label=self.unitLabels()[idx], addSpace=True)
+                     label=self.unitLabels()[idx], addSpace=True,
+                     valueType=int, validator=QIntValidator())
         self.show_at(self.unitFlags()[idx], box1)
 
         #widget index 18
@@ -261,11 +263,20 @@ class OWdyndiffraction(widget.OWWidget):
 
 
     def unitFlags(self):
-         return ['True', 'True', 'True', 'True', 'True','True', 'True','True','True', 'self.ORIENTATION_INPUT==0','self.ORIENTATION_INPUT==1', 'self.N_LAYERS>0', 'self.N_LAYERS>0', 'self.N_LAYERS>0', 'self.N_LAYERS>0 & self.ORIENTATION_INPUT==0', 'self.N_LAYERS>0 & self.ORIENTATION_INPUT==1', 'self.N_LAYERS>1','self.N_LAYERS>1','self.N_LAYERS>1', 'self.N_LAYERS>1 & self.ORIENTATION_INPUT==0','self.N_LAYERS>1 & self.ORIENTATION_INPUT==1', 'True','self.DUMP_TO_FILE == 0']
+         return ['True', 'True', 'True', 'True', 'True','True', 'True','True','True', 'self.ORIENTATION_INPUT==0','self.ORIENTATION_INPUT==1', 'self.N_LAYERS>0', 'self.N_LAYERS>0', 'self.N_LAYERS>0', 'self.N_LAYERS>0 and self.ORIENTATION_INPUT==0', 'self.N_LAYERS>0 and self.ORIENTATION_INPUT==1', 'self.N_LAYERS>1','self.N_LAYERS>1','self.N_LAYERS>1', 'self.N_LAYERS>1 and self.ORIENTATION_INPUT==0','self.N_LAYERS>1 and self.ORIENTATION_INPUT==1', 'True','self.DUMP_TO_FILE == 0']
 
 
     def compute(self):
-        dataArray = OWdyndiffraction.calculate_external_dyndiffraction(ENERGY=self.ENERGY,MIN_ANGLE=self.MIN_ANGLE,MAX_ANGLE=self.MAX_ANGLE,NPOINTS=self.NPOINTS,N_LAYERS=self.N_LAYERS,ORIENTATION_INPUT=self.ORIENTATION_INPUT,CRYSTAL_NAME_0=self.CRYSTAL_NAME_0,MILLER_0=self.MILLER_0,V_PERP_0=self.V_PERP_0,PSI_0=self.PSI_0,V_PAR_0=self.V_PAR_0,CRYSTAL_NAME_1=self.CRYSTAL_NAME_1,THICKNESS_1=self.THICKNESS_1,V_PERP_1=self.V_PERP_1,PSI_1=self.PSI_1,V_PAR_1=self.V_PAR_1,CRYSTAL_NAME_2=self.CRYSTAL_NAME_2,THICKNESS_2=self.THICKNESS_2,V_PERP_2=self.V_PERP_2,PSI_2=self.PSI_2,V_PAR_2=self.V_PAR_2,DUMP_TO_FILE=self.DUMP_TO_FILE,FILE_NAME=self.FILE_NAME)
+        dataArray = OWdyndiffraction.calculate_external_dyndiffraction(ENERGY=self.ENERGY,\
+        MIN_ANGLE=self.MIN_ANGLE,MAX_ANGLE=self.MAX_ANGLE,NPOINTS=self.NPOINTS,\
+        N_LAYERS=self.N_LAYERS,ORIENTATION_INPUT=self.ORIENTATION_INPUT,\
+        CRYSTAL_NAME_0=self.CRYSTAL_NAME_0,MILLER_0=self.MILLER_0,\
+        V_PERP_0=self.V_PERP_0,PSI_0=self.PSI_0,V_PAR_0=self.V_PAR_0,\
+        CRYSTAL_NAME_1=self.CRYSTAL_NAME_1,THICKNESS_1=self.THICKNESS_1,\
+        V_PERP_1=self.V_PERP_1,PSI_1=self.PSI_1,V_PAR_1=self.V_PAR_1,\
+        CRYSTAL_NAME_2=self.CRYSTAL_NAME_2,THICKNESS_2=self.THICKNESS_2,\
+        V_PERP_2=self.V_PERP_2,PSI_2=self.PSI_2,V_PAR_2=self.V_PAR_2,\
+        DUMP_TO_FILE=self.DUMP_TO_FILE,FILE_NAME=self.FILE_NAME)
 
         # if fileName == None:
         #     print("No file to send")
@@ -298,11 +309,11 @@ class OWdyndiffraction(widget.OWWidget):
     # can easily moved outside the class
     #
     @staticmethod
-    def calculate_external_dyndiffraction(ENERGY=10000.0,MIN_ANGLE=0.995,\
-        MAX_ANGLE=1.005,NPOINTS=500,N_LAYERS=2,ORIENTATION_INPUT=0,\
-        CRYSTAL_NAME_0=0,MILLER_0="0,0,1",V_PERP_0="0,0,1",PSI_0=0.0,V_PAR_0="1,0,0",\
-        CRYSTAL_NAME_1=0,THICKNESS_1="1000.0",V_PERP_1="0,0,1",PSI_1=0.0,V_PAR_1="1,0,0",\
-        CRYSTAL_NAME_2=0,THICKNESS_2="1000.0",V_PERP_2="0,0,1",PSI_2=0.0,V_PAR_2="1,0,0",\
+    def calculate_external_dyndiffraction(ENERGY=10000.0,MIN_ANGLE=0.9995,\
+        MAX_ANGLE=1.0005,NPOINTS=500,N_LAYERS=2,ORIENTATION_INPUT=0,\
+        CRYSTAL_NAME_0=0,MILLER_0="1,1,1",V_PERP_0="0,0,1",PSI_0=0.0,V_PAR_0="1,0,0",\
+        CRYSTAL_NAME_1=0,THICKNESS_1=1000.0,V_PERP_1="0,0,1",PSI_1=0.0,V_PAR_1="1,0,0",\
+        CRYSTAL_NAME_2=0,THICKNESS_2=1000.0,V_PERP_2="0,0,1",PSI_2=0.0,V_PAR_2="1,0,0",\
         DUMP_TO_FILE=0,FILE_NAME="tmp.dat"):
         print("Inside calculate_external_dyndiffraction. ")
 
@@ -330,7 +341,7 @@ class OWdyndiffraction(widget.OWWidget):
             cryst_1 = reflectivity.crystal(names[CRYSTAL_NAME_1])
             layer_1=reflectivity.Epitaxial_Layer(cryst_1, THICKNESS_1)
             layers.append(layer_1)
-            v_perp_0=sp.Matrix(eval(V_PERP_1))
+            v_perp_1=sp.Matrix(eval(V_PERP_1))
             if ORIENTATION_INPUT==0:
                 layer_1.calc_orientation_from_angle(PSI_1, v_perp_1)
             elif ORIENTATION_INPUT==1:
@@ -358,9 +369,9 @@ class OWdyndiffraction(widget.OWWidget):
         angle=np.linspace(MIN_ANGLE, MAX_ANGLE, NPOINTS)*thBragg
         XR=crystal_sample.calc_reflectivity(angle, ENERGY)
 
-        print(angle, abs(XR)**2)
-        return np.vstack((angle,abs(XR)**2)).copy()
-
+        columns=(np.degrees(angle), abs(XR)**2)#+tuple(abs(layer.XR)**2 for layer in layers)\
+        #+tuple(abs(layer.XT)**2 for layer in layers[1:])
+        return np.vstack(columns).copy()
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
