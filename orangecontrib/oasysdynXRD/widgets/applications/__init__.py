@@ -10,5 +10,5 @@ BACKGROUND = "#E3CF57"
 
 ICON = "icons/applications.png"
 
-PRIORITY = 402
+PRIORITY = 6001
 

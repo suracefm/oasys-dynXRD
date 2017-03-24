@@ -10,5 +10,5 @@ BACKGROUND = "#E3CF57"
 
 ICON = "icons/viewers.png"
 
-PRIORITY = 403
+PRIORITY = 6002
 
